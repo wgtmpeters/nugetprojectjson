@@ -16,3 +16,4 @@ Add a couple of properties that have been found by users to make sure that for e
 
 * replace toolsversion with "14.0"
 
+Switch -redo will regenerate the project.json files based on the packages_old.config that have been renamed by a earlier run of the script.
