@@ -36,7 +36,8 @@ Get-ChildItem -path '.' -Recurse -Include $PackagesConfigFileName |
     "' + $TargetFramework + '": {}
   },
     "runtimes":  {
-        "win-anycpu":  {}
+        "win-anycpu": {},
+        "win": {}
     }
 }' | Out-File $ProjectFilePath -Append
 		Rename-Item -Path $PackageFilePath -NewName 'packages_old.config'
