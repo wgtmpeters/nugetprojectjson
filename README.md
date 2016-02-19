@@ -11,7 +11,8 @@ besides converting packages.config to project.json it also changes the csproj fi
 
 Add a couple of properties that have been found by users to make sure that for example Nunit assemblies are copied to the output folder.
 * add targetFrameworkProfile property
-* add CopyNuGetImplementations = true property
+* Does NOT add CopyNuGetImplementations = true property, this should only be set for Test projects (NUnit,xUnit ,MSTest) and Executables.
+  See https://github.com/wgtmpeters/nugetprojectjson/issues/1
 * add PlatformTarget AnyCpu
 
 * replace toolsversion with "14.0"
