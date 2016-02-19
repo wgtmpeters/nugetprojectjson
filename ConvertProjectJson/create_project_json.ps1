@@ -117,14 +117,14 @@ Get-ChildItem -path '.' -Recurse -Include '*.csproj' | ForEach {
 			[void]$propertyGroupNode.AppendChild($node)
 			Write-Output 'Adding TargetFrameworkProfile node for PropertyGroup'
 		}
-        $nodes = @(Select-Xml -xpath "//msb:PropertyGroup/msb:CopyNuGetImplementations" $proj -Namespace $MsbNS | foreach {$_.Node})
-		if($nodes.Count -eq 0){
-			$node = $proj.CreateElement("CopyNuGetImplementations", $proj.DocumentElement.NamespaceURI)
-            $textnode = $proj.CreateTextNode("true")
-            $node.AppendChild($textnode)
-			[void]$propertyGroupNode.AppendChild($node)
-			Write-Output 'Adding CopyNuGetImplementations node for PropertyGroup'
-		}
+        #$nodes = @(Select-Xml -xpath "//msb:PropertyGroup/msb:CopyNuGetImplementations" $proj -Namespace $MsbNS | foreach {$_.Node})
+		#if($nodes.Count -eq 0){
+		#	$node = $proj.CreateElement("CopyNuGetImplementations", $proj.DocumentElement.NamespaceURI)
+        #    $textnode = $proj.CreateTextNode("true")
+        #    $node.AppendChild($textnode)
+		#	[void]$propertyGroupNode.AppendChild($node)
+		#	Write-Output 'Adding CopyNuGetImplementations node for PropertyGroup'
+		#}
         $nodes = @(Select-Xml -xpath "//msb:PropertyGroup/msb:PlatformTarget[not(@*)]" $proj -Namespace $MsbNS | foreach {$_.Node})
 		if($nodes.Count -eq 0){
 			$node = $proj.CreateElement("PlatformTarget", $proj.DocumentElement.NamespaceURI)
