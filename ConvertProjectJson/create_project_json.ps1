@@ -81,7 +81,7 @@ Get-ChildItem -path '.' -Recurse -Include '*.csproj' | ForEach {
 	$nodes = @(Select-Xml -xpath "//msb:ItemGroup/msb:None[@Include='packages.config']" $proj -Namespace $MsbNS | foreach {$_.Node})
 	Write-Output 'packages.config Nodes found: ' $nodes.Count
 	foreach($node in $nodes) {
-		$itemGroupNode = $node.ParentNodeRemo
+		$itemGroupNode = $node.ParentNode
 		[void]$itemGroupNode.RemoveChild($node)
 	}
 	
