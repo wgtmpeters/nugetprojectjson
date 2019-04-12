@@ -28,9 +28,9 @@ Get-ChildItem -path '.' -Recurse -Include $PackagesConfigFileName |
 		Write-Output $PackageFilePath
 		Write-Output $ProjectFilePath
 		'{
-  "dependencies": {' | Out-File  $ProjectFilePath
+  "dependencies": {' | Out-File -Encoding "UTF8"  $ProjectFilePath
 
-	  (Select-xml -xpath '//package' -Path $PackageFilePath | % { """{0}"": ""{1}""" -f $_.Node.id,$_.Node.version }) -join ",`n" | Out-File $ProjectFilePath -Append
+	  (Select-xml -xpath '//package' -Path $PackageFilePath | % { "    ""{0}"": ""{1}""" -f $_.Node.id,$_.Node.version }) -join ",`r`n" | Out-File -Encoding "UTF8" $ProjectFilePath -Append
 	'  },
   "frameworks": {
     "' + $TargetFramework + '": {}
@@ -39,7 +39,7 @@ Get-ChildItem -path '.' -Recurse -Include $PackagesConfigFileName |
         "win-anycpu": {},
         "win": {}
     }
-}' | Out-File $ProjectFilePath -Append
+}' | Out-File  -Encoding "UTF8" $ProjectFilePath -Append
 		Rename-Item -Path $PackageFilePath -NewName 'packages_old.config'
 }
 
